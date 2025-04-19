@@ -23,13 +23,14 @@ model User {
   id             String          @id @default(uuid())
   email          String          @unique
   userName       String?
-  isAdmin        Boolean         @default(false)
   role           Role            @default(User)
   writtenPosts   Post[]          @relation("WrittenPosts")
   favoritedPosts Post[]          @relation("FavoritedPosts")
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
   userPreference UserPreference?
+
+  @@index([email])
 }
 
 model UserPreference {
@@ -53,6 +54,8 @@ model Post {
   categories    Category[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
+
+  @@index([title])
 }
 
 model Category {

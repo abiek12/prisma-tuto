@@ -29,6 +29,8 @@ const main = async () => {
     } catch (error) {
         console.log("Error while db operations!");
         throw error;
+    } finally {
+        await prisma.$disconnect()
     }
 }
 
